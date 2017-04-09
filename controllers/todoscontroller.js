@@ -5,6 +5,7 @@ var router = express.Router()
 var Todo = require('../models/todoschema')
 
 app.use('/', router)
+app.use('/todos', todos)
 
 // START THE ROUTING
 
@@ -27,7 +28,7 @@ router.get('/index', function(req,res) {
 })
 
 
-router.post('/new/:id', function (req, res) {
+router.post('/:id', function (req, res) {
   var reqBody = req.body
 
   if (reqBody.name.length < 5) {
@@ -47,7 +48,7 @@ router.post('/new/:id', function (req, res) {
       if (err) throw (err)
       console.log('Entry is updated')
 
-      res.redirect('/new/:id')
+      res.redirect('/todos/:id')
     })
   }
 })
