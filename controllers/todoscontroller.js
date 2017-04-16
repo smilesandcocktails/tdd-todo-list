@@ -4,10 +4,10 @@ var router = express.Router()
 
 var Todo = require('../models/todoschema')
 
-app.use('/', router)
-app.use('/todos', todos)
+// app.use('/views', router)
 
 // START THE ROUTING
+
 
 router.get('/', function(req,res) {
   res.render('index')
@@ -28,7 +28,7 @@ router.get('/index', function(req,res) {
 })
 
 
-router.post('/:id', function (req, res) {
+router.post('/todos/new', function (req, res) {
   var reqBody = req.body
 
   if (reqBody.name.length < 5) {
@@ -48,28 +48,20 @@ router.post('/:id', function (req, res) {
       if (err) throw (err)
       console.log('Entry is updated')
 
-      res.redirect('/todos/:id')
+      res.redirect('/todos/new/:id')
     })
   }
 })
 
-// router.get('/showOne/:id', function(req,res) {
-//
-//   console.log({obj:list}.obj)
-//   console.log(req.params.id)
-//
-//   Todo.findById(req.params.id, function (err, list) {
-//     if (err) throw (err)
-//
-//     var objectArray = {obj:list}.obj
-//
-//     objectArray.filter (function (each) {
-//     return each.id === req.params.id
-//
-//     res.render('homepage', {obj:list})
-//
-//   })
-// })
+router.get('/todos/new/:id', function(req,res) {
+
+  Todo.findById(req.params.id, function (err, list) {
+    if (err) throw (err)
+
+    res.render('homepage', {obj:list})
+
+  })
+})
 
 
 
@@ -114,7 +106,7 @@ router.delete('/', function (req, res) {
 
    console.log('All Todos have been deleted from the list.')
 
-    res.redirect('/')
+    res.redirect('todos/index')
   })
 })
 

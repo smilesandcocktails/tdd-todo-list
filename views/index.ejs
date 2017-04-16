@@ -1,10 +1,15 @@
 
 <div class="listbutton">
-  <button type="button" name="list" href = "/index">ENTIRE LIST</button>
+  <form  action="/index" method="GET">
+    <button type="submit" name="/index">ENTIRE LIST</button>
+
+  </form>
 </div>
 <div class="createbutton">
-  <button type="button" name="create" href="/new">CREATE NEW LIST</button>
+  <form  action="/new" method="GET">
+  <button type="submit" name="/new">CREATE NEW LIST</button>
+  </form>
 </div>
 
-  <!-- <a href="/index">LIST ALL NAMES AND IDS OF TODOS</a>
-  <a href="/new">CREATE NEW TODOS</a> -->
+<%# <a href="/index">LIST ALL NAMES AND IDS OF TODOS</a>
+  <a href="/new">CREATE NEW TODOS</a>%>

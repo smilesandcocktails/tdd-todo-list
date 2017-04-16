@@ -9,6 +9,8 @@ var dburi = 'mongodb://localhost/todo'
 mongoose.connect(dburi)
 mongoose.Promise = global.Promise
 
+var path = require('path')
+
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override')
 
@@ -21,8 +23,9 @@ app.use(methodOverride('_method'))
 
 // START THE ROUTING
 app.use('/', todoscontroller)
-app.use('/assets', express.static('assets'))
+// app.use('/public', express.static('public'))
 
+app.use(express.static(path.join(__dirname, 'public')))
 
 
 // END THE ROUTING
